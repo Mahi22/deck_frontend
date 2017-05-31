@@ -30,12 +30,13 @@ import css from './styles.css';
 // import sass from './styles.scss';
 // import less from './styles.less';
 
-// ----------------------
+// Components
+import Home from './components/Home';
 
-// We'll display this <Home> component when we're on the / route
-const Home = () => (
-  <h1>You&apos;re on the home page - click another link above</h1>
-);
+// Containers
+import LoginPage from './containers/LoginPage';
+
+// ----------------------
 
 // Helper component that will be conditionally shown when the route matches.
 // This gives you an idea how React Router v4 works
@@ -128,13 +129,13 @@ export default () => (
     <hr />
     <ul>
       <li><Link to="/">Home</Link></li>
-      <li><Link to="/page/about">About</Link></li>
-      <li><Link to="/page/contact">Contact</Link></li>
+      <li><Link to="/login">Login</Link></li>
     </ul>
     <hr />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/page/:name" component={Page} />
+      <Route path="/login" component={LoginPage} />
       <Route component={NotFound} />
     </Switch>
     <hr />

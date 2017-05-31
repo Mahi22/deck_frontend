@@ -21,6 +21,11 @@ import { BrowserRouter } from 'react-router-dom';
 // and handle injecting data down to any listening component
 import { ApolloProvider } from 'react-apollo';
 
+// Setting Up material-ui here
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 // Grab the shared Apollo Client
 import { browserClient } from 'kit/lib/apollo';
 
@@ -41,6 +46,9 @@ const client = browserClient();
 
 // Create a new Redux store
 const store = createNewStore(client);
+
+// remove tap delay, essential for MaterialUI to work properly
+injectTapEventPlugin();
 
 // Create the 'root' entry point into the app.  If we have React hot loading
 // (i.e. if we're in development), then we'll wrap the whole thing in an
@@ -63,9 +71,11 @@ const Root = (() => {
   // can respond to route changes
   const Chain = () => (
     <ApolloProvider store={store} client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </MuiThemeProvider>
     </ApolloProvider>
   );
 
