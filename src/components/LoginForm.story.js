@@ -1,5 +1,5 @@
 import React from 'react';
-import { storiesOf, action, linkTo } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
 const buttonStyles = {
   border: '1px solid #eee',
@@ -14,8 +14,7 @@ const buttonStyles = {
 const Button = ({ children, onClick }) => (
   <button
     style={buttonStyles}
-    onClick={onClick}
-  >
+    onClick={onClick} >
     {children}
   </button>
 );
